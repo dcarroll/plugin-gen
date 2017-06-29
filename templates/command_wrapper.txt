@@ -1,0 +1,40 @@
+ 'use strict';
+
+// Node
+const path = require('path');
+
+// Local
+const messages = require(path.join(__dirname, '..', '..', 'lib', 'messages'))();
+const {{ucase_topic}} = require(path.join(__dirname, '..', '..', 'lib', '{{topic}}', '{{topic}}Api.js')); // eslint-disable-line global-require
+
+//TODO - get this from sfdx_utils
+//const logger = require(path.join(__dirname, '..', '..', 'lib', 'logApi'));
+
+(function () {
+    'use strict';
+
+    module.exports = {
+        command: '{{command}}',
+        topic: '{{topic}}',
+        description: messages.getMessage('description', [], '{{topic}}_{{command}}'),
+        longDescription: messages.getMessage('longDescription', [], '{{topic}}_{{command}}'),
+        help: messages.getMessage('help', [], '{{topic}}_{{command}}'),
+        requiresWorkspace: false,
+        flags: [
+            {
+                name: "hellotext",
+                char: "t",
+                description: "Text to echo from the plugin",
+                hasValue: true,
+                required: true
+            }
+        ],
+        // TODO - put all possible attributes in here behind comments
+
+        run (context) {
+            const {{topic}} = new {{ucase_topic}}();
+            return {{topic}}.{{command}}(context);
+        }
+
+    };
+}());

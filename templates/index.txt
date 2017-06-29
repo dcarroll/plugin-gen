@@ -1,0 +1,19 @@
+'use strict'
+
+const path = require('path');
+const {{topic}}{{command}} = require('./commands/{{topic}}/{{topic}}_{{command}}.js');
+const {{topic}}Topic = require('./commands/{{topic}}/{{topic}}.js');
+
+(function () {
+  'use strict';
+
+  exports.topics = [{{topic}}Topic()];
+
+  exports.namespace = {
+    name: '{{namespace}}',
+    description: '{{topic}} commands the {{namespace}} namespace'
+  };
+
+  exports.commands = [{{topic}}{{command}}];
+
+}());

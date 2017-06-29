@@ -1,0 +1,13 @@
+'use strict';
+
+const path = require('path');
+
+const messages = require(path.join(__dirname, '..', '..', 'lib', 'messages'))();
+
+module.exports = function () {
+    return {
+        name: '{{topic}}',
+        description: messages.getMessage('mainTopicDescriptionHelp', [], '{{topic}}'),
+        longDescription:  messages.getMessage('mainTopicLongDescriptionHelp', [], '{{topic}}')
+    };
+};

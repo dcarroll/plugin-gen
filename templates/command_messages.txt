@@ -1,0 +1,69 @@
+// TODO - externalize util
+const util = require('util');
+
+const TARGET_USERNAME_PARAM = 'targetusername';
+
+const messages = {
+    default: {
+        en_US: {
+            // errors
+            // help
+            displayCommand{{ucase_topic}}{{ucase_command}}Help: 'Replace with your topic description.'
+        }
+    },
+
+    {{topic}}: {
+        en_US: {
+            name:'{{topic}}',
+            mainTopicDescriptionHelp: 'short description of your topic',
+            mainTopicLongDescriptionHelp: 'longer description of your topic'
+        }
+    },
+
+    {{topic}}_{{command}}: {
+      en_US: {
+            help: "Help information specific to this command",
+            description: "{{ucase_topic}} {{command}} description",
+            longDescription: "Longer description of {{ucase_topic}} {{command}}.",
+            GeneralError: "A general error for the {{ucase_topic}} {{command}} command."
+      }
+
+    }
+
+ };
+
+const _getLocale = function() {
+    return 'en_US';
+};
+
+module.exports = function(locale = _getLocale()) {
+    return {
+        getMessage(label, args, bundle = 'default') {
+
+            const bundleLocale = messages[bundle][locale];
+
+            if (util.isNullOrUndefined(bundleLocale)) {
+                return null;
+            }
+
+            if (util.isNullOrUndefined(bundleLocale[label])) {
+                throw new Error(util.format(bundleLocale.UndefinedLocalizationLabel, bundle, label, locale));
+            }
+
+            if (util.isNullOrUndefined(args)) {
+                return bundleLocale[label];
+            } else {
+                const everyone = [].concat(bundleLocale[label], args);
+                return util.format(...everyone);
+            }
+        },
+
+        getLocale() {
+            return _getLocale();
+        },
+
+        get targetusername() {
+            return TARGET_USERNAME_PARAM;
+        }
+    };
+};

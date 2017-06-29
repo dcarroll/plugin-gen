@@ -1,0 +1,51 @@
+'use strict';
+
+const path = require('path');
+
+const messages = require(path.join(__dirname, '..', 'messages'))();
+
+// Private helper functions
+/*
+const _function_name = (arglist) => {
+    console.log(arglist);
+    return;
+};
+*/
+
+
+/**
+ * Describe the utility of your plugin *
+ */
+class {{ucase_topic}} {
+    /**
+     * Public members of the {{ucase_topic}} class
+     * @yourParam {type} description
+     * @returns {Promise}.
+     */
+
+    {{command}}(context) {
+        console.log('{{namespace}}:{{topic}}:{{command}} is running!\n' + context.flags.hellotext);
+        return;
+    }
+
+    getHumanErrorMessage(){ 
+        return 'Your plugin ran into an error.'
+    }
+    getHumanSuccessMessage() {
+        return 'Your plugin ran successfully!'
+    };
+
+    /**
+     * Other public methods in your plugin
+     * @param {string} param desc
+     * @param {string} param desc
+     * @returns {Promise} result value
+     */
+    // TODO - write your own method
+    // delete(alias, group = Alias.Groups.ORGS) {
+    //     return Alias.set(alias, undefined, group);
+    // }
+
+}
+
+module.exports = {{ucase_topic}};
