@@ -8,13 +8,10 @@
 'use strict';
 
 const path = require('path');
-
 const messages = require(path.join(__dirname, '..', '..', 'lib', 'messages'))();
 
-module.exports = function () {
-    return {
-        name: 'plugin',
-        description: messages.getMessage('mainTopicDescriptionHelp', [], 'plugin'),
-        longDescription:  messages.getMessage('mainTopicLongDescriptionHelp', [], 'plugin')
-    };
+module.exports = {
+    name: 'plugin',
+    description: messages.getMessage('mainTopicDescriptionHelp', [], 'plugin'),
+    longDescription:  messages.getMessage('mainTopicLongDescriptionHelp', [], 'plugin')
 };

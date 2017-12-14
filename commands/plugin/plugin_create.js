@@ -4,9 +4,6 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root  or https://opensource.org/licenses/BSD-3-Clause
  */
-
- 'use strict';
-
 // Node
 const path = require('path');
 const _ = require('lodash');
@@ -14,10 +11,11 @@ const _ = require('lodash');
 // Local
 const messages = require(path.join(__dirname, '..', '..', 'lib', 'messages'))();
 
-module.exports =  function(_execCommand) {
-    return {
+(function () {
+    'use strict';
+    module.exports = {
         command: 'create',
-        //topic: 'plugin',
+        topic: 'plugin',
         description: messages.getMessage('description', [], 'plugin_create'),
         longDescription: messages.getMessage('longDescription', [], 'plugin_create'),
         help: messages.getMessage('help', [], 'plugin_create'),
@@ -70,8 +68,8 @@ module.exports =  function(_execCommand) {
             context.templateDir = path.join(__dirname, '..', '..', 'templates');
             const Plugin = require(path.join(__dirname, '..', '..', 'lib', 'plugin', 'plugin_create')); // eslint-disable-line global-require
             let plugin = new Plugin();
-
-            return _execCommand(new Plugin(), context);
+            return plugin.execute(context);
+            //return _execCommand(new Plugin(), context);
         }
     };
-};
+}());
