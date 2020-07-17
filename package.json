@@ -9,7 +9,7 @@
     "url": "https://github.com/dcarroll/plugin_gen/issues"
   },
   "dependencies": {
-      "lodash": ">=4.17.11",
+      "lodash": ">=4.17.19",
       "bluebird": "3.4.6"
   },
   "keywords": [
